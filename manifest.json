@@ -1,0 +1,14 @@
+{
+    "computers/startup.lua": {
+        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/computers/startup.lua"
+    },
+    "computers/apis/log.lua": {
+        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/computers/apis/log.lua"
+    },
+    "turtles/startup.lua": {
+        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/turtles/startup.lua"
+    },
+    "turtles/Api.lua": {
+        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/turtles/Api.lua"
+    }
+}
