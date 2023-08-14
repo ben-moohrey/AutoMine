@@ -1,6 +1,6 @@
 -- URL to the manifest file on GitHub
 local manifestURL = "http://raw.githubusercontent.com/%%GITHUB_USERNAME%%/%%GITHUB_REPO%%/%%GITHUB_BRANCH%%/manifest.json"
-local baseDir = "/%%GITHUB_BRANCH%%"
+local baseDir = "/%%GITHUB_REPO%%"
 -- Fetch the manifest from GitHub
 local function fetchManifest(url)
     local handle = http.get(url)

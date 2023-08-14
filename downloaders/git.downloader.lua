@@ -1,6 +1,6 @@
 -- URL to the manifest file on GitHub
 local manifestURL = "http://raw.githubusercontent.com/ben-moohrey/AutoMine/main/manifest.json"
-local baseDir = "/main"
+local baseDir = "/AutoMine"
 -- Fetch the manifest from GitHub
 local function fetchManifest(url)
     local handle = http.get(url)

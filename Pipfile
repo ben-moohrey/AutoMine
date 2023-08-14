@@ -13,5 +13,5 @@ python-dotenv = "*"
 python_version = "3.10"
 
 [scripts]
-precommit_script = "python precommit.py ./downloadertemplate.lua"
+precommit_script = "python precommit.py ./downloaders/template.downloader.lua"
 
