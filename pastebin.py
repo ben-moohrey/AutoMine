@@ -49,25 +49,25 @@ def modify_and_upload(filename, api_key):
 
     response = requests.post(url, data=data)
 
-    record = {
-            "wget_run_command:": f"wget run https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/downloader.lua"
-    }
-
-    with open("pastebin_record.json", "w") as file:
-        json.dump(record, file, indent=4)
-
+    
     if "pastebin.com" in response.text:
         pastebin_id = response.text.split('/')[-1]
         record = {
             "pastebin_link": response.text,
             "pastebin_run_command": f"pastebin run {pastebin_id}",
+            "wget_run_command:": f"wget run https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/downloader.lua"
         }
-        
+
         with open("pastebin_record.json", "w") as file:
             json.dump(record, file, indent=4)
 
         return response.text
     else:
+        wgetRecord = {
+            "wget_run_command:": f"wget run https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/downloader.lua"
+        }
+        with open("pastebin_record.json", "w") as file:
+            json.dump(wgetRecord, file, indent=4)
         return response.text
     
 if __name__ == "__main__":
