@@ -1,6 +1,5 @@
 -- URL to the manifest file on GitHub
 local manifestURL = "http://raw.githubusercontent.com/%%GITHUB_USERNAME%%/%%GITHUB_REPO%%/%%GITHUB_BRANCH%%/manifest.json"
-local baseDir -- This will be set dynamically after fetching the manifest
 
 -- Fetch the manifest from GitHub
 local function fetchManifest(url)
@@ -11,13 +10,6 @@ local function fetchManifest(url)
     local content = handle.readAll()
     handle.close()
     return textutils.unserializeJSON(content)
-end
-
--- Determine base directory from the manifest
-local function determineBaseDir(manifest)
-    for path, _ in pairs(manifest) do
-        return path:match("([^/]+)/") -- Match the first directory in the path
-    end
 end
 
 -- Download a file from a given URL
@@ -43,13 +35,12 @@ end
 local function clearOldFiles(manifest)
     local filesToDelete = {}
     
-    -- List all files in the base directory
-    local allFiles = fs.list(baseDir)
+    -- The following line should work, but if not, you might need to change it to the specific directory.
+    local allFiles = fs.list("/")
+
     for _, file in ipairs(allFiles) do
-        local fullPath = fs.combine(baseDir, file)
-        -- If file in directory is not in the manifest, mark it for deletion
-        if not manifest[fullPath] then
-            table.insert(filesToDelete, fullPath)
+        if not manifest[file] then
+            table.insert(filesToDelete, file)
         end
     end
 
@@ -65,18 +56,12 @@ local function main()
         error("Failed to parse manifest")
     end
 
-    baseDir = "/" .. determineBaseDir(manifest)
-
-    if not fs.exists(baseDir) then
-        fs.makeDir(baseDir)
-    end
-
     clearOldFiles(manifest)
 
     -- Loop through the manifest and download each file
     for path, info in pairs(manifest) do
         print("Downloading " .. path .. " from " .. info.url)
-        downloadFile(info.url, path) -- Using the full path from the manifest without recombining
+        downloadFile(info.url, path)
     end
 
     print("All files downloaded successfully!")
