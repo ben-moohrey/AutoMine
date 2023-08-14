@@ -58,7 +58,7 @@ local function main()
         error("Failed to parse manifest")
     end
 
-    if !fs.exists(baseDir) then
+    if not fs.exists(baseDir) then
         fs.makeDir(baseDir)
     end
 
