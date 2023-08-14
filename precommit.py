@@ -19,11 +19,9 @@ def create_manifest(directory):
 
     for root, dirs, files in os.walk(directory):
         for filename in files:
-
-            path = f"{GITHUB_REPO}/{os.path.relpath(os.path.join(root, filename), directory)}"
-            print(path)
+            path = os.path.relpath(os.path.join(root, filename), directory)
             url = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/{directory}/{path}"
-            manifest[path] = {"url": url}
+            manifest[f"{GITHUB_REPO}/{path}"] = {"url": url}
 
     with open("manifest.json", "w") as outfile:
         json.dump(manifest, outfile, indent=4)
