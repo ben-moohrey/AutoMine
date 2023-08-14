@@ -32,12 +32,27 @@ local function downloadFile(url, path)
     file.close()
 end
 
+-- Recursively list all files and folders under a directory
+local function listAll(dir)
+    local list = {}
+    local function _list(d)
+        for _, f in ipairs(fs.list(d)) do
+            local path = fs.combine(d, f)
+            table.insert(list, path)
+            if fs.isDir(path) then
+                _list(path)
+            end
+        end
+    end
+    _list(dir)
+    return list
+end
+
 local function clearOldFiles(manifest)
     local filesToDelete = {}
+    local repoDir = fs.combine("/", "AutoMine")
     
-    -- The following line should work, but if not, you might need to change it to the specific directory.
-    local allFiles = fs.list("/")
-
+    local allFiles = listAll(repoDir)
     for _, file in ipairs(allFiles) do
         if not manifest[file] then
             table.insert(filesToDelete, file)
