@@ -1,5 +1,5 @@
 -- URL to the manifest file on GitHub
-local manifestURL = "https://raw.githubusercontent.com/%%GITHUB_USERNAME%%/%%GITHUB_REPO%%/%%GITHUB_BRANCH%%/%%COMPUTERCRAFT_DIR%%/manifest.json"
+local manifestURL = "https://raw.githubusercontent.com/%%GITHUB_USERNAME%%/%%GITHUB_REPO%%/%%GITHUB_BRANCH%%/manifest.json"
 
 -- Fetch the manifest from GitHub
 local function fetchManifest(url)
