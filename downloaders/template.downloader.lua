@@ -75,9 +75,8 @@ local function main()
 
     -- Loop through the manifest and download each file
     for path, info in pairs(manifest) do
-        local fullPath = fs.combine(baseDir, path)
-        print("Downloading " .. fullPath .. " from " .. info.url)
-        downloadFile(info.url, fullPath)
+        print("Downloading " .. path .. " from " .. info.url)
+        downloadFile(info.url, path) -- Using the full path from the manifest without recombining
     end
 
     print("All files downloaded successfully!")
