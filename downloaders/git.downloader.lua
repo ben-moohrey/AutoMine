@@ -1,6 +1,7 @@
 -- URL to the manifest file on GitHub
 local manifestURL = "http://raw.githubusercontent.com/ben-moohrey/AutoMine/main/manifest.json"
-local baseDir = "/AutoMine"
+local baseDir -- This will be set dynamically after fetching the manifest
+
 -- Fetch the manifest from GitHub
 local function fetchManifest(url)
     local handle = http.get(url)
@@ -10,6 +11,13 @@ local function fetchManifest(url)
     local content = handle.readAll()
     handle.close()
     return textutils.unserializeJSON(content)
+end
+
+-- Determine base directory from the manifest
+local function determineBaseDir(manifest)
+    for path, _ in pairs(manifest) do
+        return path:match("([^/]+)/") -- Match the first directory in the path
+    end
 end
 
 -- Download a file from a given URL
@@ -36,7 +44,6 @@ local function clearOldFiles(manifest)
     local filesToDelete = {}
     
     -- List all files in the base directory
-
     local allFiles = fs.list(baseDir)
     for _, file in ipairs(allFiles) do
         local fullPath = fs.combine(baseDir, file)
@@ -57,6 +64,8 @@ local function main()
     if not manifest then
         error("Failed to parse manifest")
     end
+
+    baseDir = "/" .. determineBaseDir(manifest)
 
     if not fs.exists(baseDir) then
         fs.makeDir(baseDir)
