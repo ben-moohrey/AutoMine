@@ -20,7 +20,7 @@ def create_manifest(directory):
     for root, dirs, files in os.walk(directory):
         for filename in files:
             path = os.path.relpath(os.path.join(root, filename), directory)
-            url = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/{directory}/{path}"
+            url = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/{COMPUTERCRAFT_DIR}/{directory}/{path}"
             manifest[path] = {"url": url}
 
     with open("manifest.json", "w") as outfile:
@@ -35,6 +35,7 @@ def modify_and_upload(filename, api_key):
     file_content = file_content.replace("%%GITHUB_USERNAME%%", GITHUB_USERNAME)
     file_content = file_content.replace("%%GITHUB_REPO%%", GITHUB_REPO)
     file_content = file_content.replace("%%GITHUB_BRANCH%%", GITHUB_BRANCH)
+    file_content = file_content.replace("%%COMPUTERCRAFT_DIR%%", COMPUTERCRAFT_DIR)
 
     url = "https://pastebin.com/api/api_post.php"
     data = {
