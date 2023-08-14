@@ -15,14 +15,19 @@ GITHUB_BRANCH = os.getenv("GITHUB_BRANCH")
 COMPUTERCRAFT_DIR = os.getenv("COMPUTERCRAFT_DIR")
 
 def create_manifest(directory):
-    manifest = {}
+    manifest = {
+        "project_path":"",
+        "files": {
 
+        }
+    }
     for root, dirs, files in os.walk(directory):
         for filename in files:
             path = os.path.relpath(os.path.join(root, filename), directory)
             url = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/{directory}/{path}"
-            manifest[f"{GITHUB_REPO}/{path}"] = {"url": url}
+            manifest["files"][f"{GITHUB_REPO}/{path}"] = {"url": url}
 
+    manifest["project_path"] = f"/{GITHUB_REPO}"
     with open("manifest.json", "w") as outfile:
         json.dump(manifest, outfile, indent=4)
 

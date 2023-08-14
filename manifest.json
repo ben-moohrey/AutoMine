@@ -1,14 +1,17 @@
 {
-    "AutoMine/computers/startup.lua": {
-        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/computers/startup.lua"
-    },
-    "AutoMine/computers/apis/log.lua": {
-        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/computers/apis/log.lua"
-    },
-    "AutoMine/turtles/startup.lua": {
-        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/turtles/startup.lua"
-    },
-    "AutoMine/turtles/Api.lua": {
-        "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/turtles/Api.lua"
+    "project_path": "/AutoMine",
+    "files": {
+        "AutoMine/computers/startup.lua": {
+            "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/computers/startup.lua"
+        },
+        "AutoMine/computers/apis/log.lua": {
+            "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/computers/apis/log.lua"
+        },
+        "AutoMine/turtles/startup.lua": {
+            "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/turtles/startup.lua"
+        },
+        "AutoMine/turtles/Api.lua": {
+            "url": "https://raw.githubusercontent.com/ben-moohrey/AutoMine/main/ComputerCraft/turtles/Api.lua"
+        }
     }
 }
