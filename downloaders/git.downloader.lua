@@ -43,18 +43,19 @@ local function clearOldFiles(manifest)
         return
     end
 
-    local allFiles = fs.list(manifest.project_path)
+    fs.delete(manifest.project_path)
+    -- local allFiles = fs.list(manifest.project_path)
 
-    for _, file in ipairs(allFiles) do
-        if not manifest.files[file] then
-            table.insert(filesToDelete, file)
-        end
-    end
+    -- for _, file in ipairs(allFiles) do
+    --     if not manifest.files[file] then
+    --         table.insert(filesToDelete, file)
+    --     end
+    -- end
 
-    -- Delete the marked files
-    for _, file in ipairs(filesToDelete) do
-        fs.delete(file)
-    end
+    -- -- Delete the marked files
+    -- for _, file in ipairs(filesToDelete) do
+    --     fs.delete(file)
+    -- end
 end
 
 local function main()
