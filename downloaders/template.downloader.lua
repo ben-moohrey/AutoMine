@@ -36,6 +36,7 @@ local function clearOldFiles(manifest)
     local filesToDelete = {}
     
     -- List all files in the base directory
+
     local allFiles = fs.list(baseDir)
     for _, file in ipairs(allFiles) do
         local fullPath = fs.combine(baseDir, file)
@@ -55,6 +56,10 @@ local function main()
     local manifest = fetchManifest(manifestURL)
     if not manifest then
         error("Failed to parse manifest")
+    end
+
+    if !fs.exists(baseDir) then
+        fs.makeDir(baseDir)
     end
 
     clearOldFiles(manifest)
