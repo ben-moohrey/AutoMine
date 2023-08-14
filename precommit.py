@@ -64,12 +64,12 @@ def modify_and_upload(filename, api_key):
         return response.text
     else:
         wgetRecord = {
-            "wget_run_command:": f"wget run https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/git.downloader.lua"
+            "wget_run_command:": f"wget run https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/{GITHUB_BRANCH}/git_downloader.lua"
         }
         with open("pastebin_record.json", "w") as file:
             json.dump(wgetRecord, file, indent=4)
 
-        with open("git.downloader.lua", "w+") as file:
+        with open("git_downloader.lua", "w+") as file:
             file.write(file_content)
 
         return response.text
